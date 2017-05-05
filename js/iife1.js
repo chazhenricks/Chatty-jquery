@@ -12,42 +12,49 @@ var Chatty = (function(chatapp){
             usersArray.push(JSONarray[i].user);
         }
     }
-    // var newJSON = [];
-    // var newJSON2 = [];
-    // var newJSON3 = [];
-    // var newJSON4 = [];
-    // var newJSON5 = [];
 
     chatapp.xhrfunction = function (){
-        var loadMessages = new XMLHttpRequest();
-        loadMessages.open("GET", "https://kachatstrophe.firebaseio.com/messages.json");
-        loadMessages.send();
-        loadMessages.addEventListener("load", function(event){
-            console.log("the data has loaded!");
 
-            var data = JSON.parse(event.target.responseText);
-            pushData(data);
-            var dataArray = [];
+        $.ajax({
+            url:"https://kachatstrophe.firebaseio.com/messages.json",
+        })
+        .done(pushData)
+        .done(Chatty.enterKeyPress)
+        .done(Chatty.writeToDom)
+        .done(Chatty.defaultListeners)
+        .done(Chatty.optionsView)
+        .done(Chatty.chatView);
 
-            if(typeof data === "object"){
-                console.log("data typeof", data)
-                for(message in data){
-                    dataArray.push(data[message]);
-                }
-            }
-            pushData(dataArray);
 
-            // console.log("data", data);
-            // console.log("message", data[0].text);
-            // console.log("date", data[0].date);
-            // console.log("user", data[0].user);
+        // var loadMessages = new XMLHttpRequest();
+        // loadMessages.open("GET", "https://kachatstrophe.firebaseio.com/messages.json");
+        // loadMessages.send();
+        // loadMessages.addEventListener("load", function(event){
+        //     console.log("the data has loaded!");
 
-            Chatty.enterKeyPress();
-            Chatty.writeToDom()
-            Chatty.defaultListeners();
-            Chatty.optionsView();
-            Chatty.chatView();
-        });
+        //     var data = JSON.parse(event.target.responseText);
+            // pushData(data);
+            // var dataArray = [];
+
+            // if(typeof data === "object"){
+            //     console.log("data typeof", data)
+            //     for(message in data){
+            //         dataArray.push(data[message]);
+            //     }
+            // }
+            // pushData(dataArray);
+
+        //     // console.log("data", data);
+        //     // console.log("message", data[0].text);
+        //     // console.log("date", data[0].date);
+        //     // console.log("user", data[0].user);
+
+        //     Chatty.enterKeyPress();
+        //     Chatty.writeToDom()
+        //     Chatty.defaultListeners();
+        //     Chatty.optionsView();
+        //     Chatty.chatView();
+        // });
 
     }
 
