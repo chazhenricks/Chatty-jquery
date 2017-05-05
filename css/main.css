@@ -5,6 +5,10 @@ body {
 	flex-direction: column;
 }
 
+.footerHeight{
+	height: 99px;
+}
+
 main {
 	flex: 1 0 auto;
 	background-image: url("../img/animal-prints.svg");

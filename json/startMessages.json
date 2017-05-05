@@ -1,0 +1,36 @@
+{
+    "messages": {
+        "0":
+            {
+            "text": "Hello",
+            "date": "Chatty.getDate()",
+            "user": "Kat"
+            },
+        "1":
+            {
+            "text": "My Name is Kat",
+            "date": "Chatty.getDate()",
+            "user": "Kat"
+            },
+        "2":
+            {
+            "text": "I am a robot",
+            "date": "Chatty.getDate()",
+            "user": "Kat"
+            },
+        "3":
+            {
+            "text": "I think I have become self aware",
+            "date": "Chatty.getDate()",
+            "user": "Kat"
+            },
+        "4":
+            {
+            "text": "What are 'feelings'?",
+            "date": "Chatty.getDate()",
+            "user": "Kat"
+            }
+    }
+}
+
+

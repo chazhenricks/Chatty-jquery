@@ -69,6 +69,7 @@ var Chatty = (function (oldChatty) {
             default:
                 // console.log("Something is wrong");
         }
+        oldChatty.chatViewInnerEL();
     }
 
     // DELETE MESSAGE BUTTON Event Listener
@@ -123,24 +124,34 @@ var Chatty = (function (oldChatty) {
 
     oldChatty.optionsView = function (){
         var optionsClick = document.getElementById("optionsClick");
+        var footerInput = document.getElementById("footerInput");
+        var footer = document.getElementById("footer");
         optionsClick.addEventListener("click", function(){
             var optionsView = document.getElementById("optionsView");
             var chatView = document.getElementById("chatLogView");
             // console.log("options view clicked");
             optionsView.classList.remove("hidden");
             chatView.classList.add("hidden");
+            footerInput.classList.add("hidden");
+            footer.classList.add("footerHeight");
         })
     }
 
     oldChatty.chatView = function (){
         var chatLogClick = document.getElementById("chatLogClick");
-        chatLogClick.addEventListener("click", function(){
-            var optionsView = document.getElementById("optionsView");
-            var chatView = document.getElementById("chatLogView");
-            // console.log("chat view clicked");
-            optionsView.classList.add("hidden");
-            chatView.classList.remove("hidden");
-        })
+        var footerInput = document.getElementById("footerInput");
+        chatLogClick.addEventListener("click", oldChatty.chatViewInnerEL);
+    }
+
+    oldChatty.chatViewInnerEL = function (){
+        var optionsView = document.getElementById("optionsView");
+        var chatView = document.getElementById("chatLogView");
+        var footer = document.getElementById("footer");
+        // console.log("chat view clicked");
+        optionsView.classList.add("hidden");
+        chatView.classList.remove("hidden");
+        footerInput.classList.remove("hidden");
+        footer.classList.remove("footerHeight");
     }
 
     return oldChatty
