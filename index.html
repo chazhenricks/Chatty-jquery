@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,136 +8,129 @@
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
     <link rel="stylesheet" href="css/main.css">
     <link rel="icon" type="image/ico" href="img/favicon-yellow.ico">
 </head>
-<body>
 
-    <nav> <!-- Logo and App Name -->
-      <div class="nav-wrapper teal lighten-3">
-        <a href="#" class="brand-logo"><img class="logo" src="img/cat.svg"> <img class="logo" src="img/happy-emoticon-with-one-tooth.svg"> <img class="logo" src="img/trophy-cup-silhouette.svg"></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li id="chatLogClick">Katchatstrophe</li>
-          <li id="optionsClick"><i class="large material-icons">settings</i></li>
-        </ul>
-      </div>
+<body>
+<!-- Nav Bar -->
+    <nav>
+        <!-- Logo and App Name -->
+        <div class="nav-wrapper teal lighten-3">
+            <a href="#" class="brand-logo"><img class="logo" src="img/cat.svg"> <img class="logo" src="img/happy-emoticon-with-one-tooth.svg"> <img class="logo" src="img/trophy-cup-silhouette.svg"></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li id="chatLogClick">Katchatstrophe</li>
+                <li id="optionsClick"><i class="large material-icons">settings</i></li>
+            </ul>
+        </div>
     </nav>
 
-    <main> <!-- wrapper -->
-      <div id="chatLogView" class="row">
-        <div class="col s10 offset-s1">
-          <div id="chat-log"> <!-- Dom Target  -->
-              <div id="write">
-              </div>
-          </div>
+
+    <!-- ChatLog -->
+    <main>
+        <!-- wrapper -->
+        <div id="chatLogView" class="row">
+            <div class="col s10 offset-s1">
+                <div id="chat-log">
+                    <!-- Dom Target  -->
+                    <div id="write">
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div id="optionsView" class="row hidden">
-        <div class="wrapper">
-          <div class="row">
-            <div class="input-field col s6 offset-s3">
-              <select id="theme-select">
-                <option value="1">Default Theme</option>
-                <option value="2">Dark Theme</option>
-              </select>
-              <label>Select Theme</label>
+        <div id="optionsView" class="row hidden">
+            <div class="wrapper">
+                <div class="row">
+                    <div class="input-field col s6 offset-s3">
+                        <select id="theme-select">
+                            <option value="1">Default Theme</option>
+                            <option value="2">Dark Theme</option>
+                        </select>
+                        <label>Select Theme</label>
+                    </div>
+                    <div class="col s3">
+                        <a id="btn-selectTheme" class="waves-effect waves-light btn amber lighten-3 grey-text text-darken-1">Select Theme</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6 offset-s3">
+                        <select id="text-size-select">
+                            <option value="a">Default</option>
+                            <option value="b">Large Text</option>
+                        </select>
+                        <label>Select Text Size</label>
+                    </div>
+                    <div class="col s3 ">
+                        <a id="btn-selectText" class="waves-effect waves-light btn amber lighten-3 grey-text text-darken-1">Select Text Size</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s4 offset-s4 center-align">
+                        <!--Custom Color Modal Trigger -->
+                        <a class="waves-effect waves-light btn" href="#modal1">Create Custom Theme</a>
+                    </div>
+                </div>
             </div>
-            <div class="col s3">
-              <a id="btn-selectTheme" class="waves-effect waves-light btn amber lighten-3 grey-text text-darken-1">Select Theme</a>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="input-field col s6 offset-s3">
-              <select id="text-size-select">
-                <option value="a">Default</option>
-                <option value="b">Large Text</option>
-              </select>
-              <label>Select Text Size</label>
-            </div>
-            <div class="col s3 ">
-              <a id="btn-selectText" class="waves-effect waves-light btn amber lighten-3 grey-text text-darken-1">Select Text Size</a>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col s4 offset-s4 center-align">
-        <!--Custom Color Modal Trigger -->
-           <a class="waves-effect waves-light btn" href="#modal1">Create Custom Theme</a>
-
-            </div>
-          </div>
-
         </div>
-      </div>
-
-
     </main>
-
     <!-- Input Footer -->
-    <footer id="footer" class="page-footer amber lighten-2"> 
-      <div  id="footerInput" class="row">
-        <div class="input-field col s3">
-          <select id="user-select">
-            <option value="Eliza">Eliza</option>
-            <option value="Chaz">Chaz</option>
-            <option value="Matt">Matt</option>
-            <option value="The Donald">President Drump</option>
-            <option value="Bill Nye">Bill Nye</option>
-            <option value="Troll">Troll</option>
-          </select>
-          <label>Select User</label>
+    <footer id="footer" class="page-footer amber lighten-2">
+        <div id="footerInput" class="row">
+            <div class="input-field col s3">
+                <select id="user-select">
+                    <option value="Eliza">Eliza</option>
+                    <option value="Chaz">Chaz</option>
+                    <option value="Matt">Matt</option>
+                    <option value="The Donald">President Drump</option>
+                    <option value="Bill Nye">Bill Nye</option>
+                    <option value="Troll">Troll</option>
+                </select>
+                <label>Select User</label>
+            </div>
+            <div class="input-field col s6">
+                <input type="text" name="" id="message-input">
+                <label for="message-input">Type your message</label>
+            </div>
+            <div class="col s3 valign-wrapper">
+                <a id="clear-log" class="waves-effect waves-light btn teal lighten-3">Clear</a>
+                <a id="edit-btn" class="hidden waves-effect waves-light btn teal lighten-3">Edit Message</a>
+            </div>
         </div>
-        <div class="input-field col s6">
-          <input type="text" name="" id="message-input">
-          <label for="message-input">Type your message</label>
-        </div>
-        <div class="col s3 valign-wrapper">
-          <a id="clear-log" class="waves-effect waves-light btn teal lighten-3">Clear</a>
-          <a id="edit-btn" class="hidden waves-effect waves-light btn teal lighten-3">Edit Message</a>
-        </div>
-      </div>
     </footer>
-
-
-
     <!-- Custom Theme Modal -->
-      <div id="modal1" class="modal">
+    <div id="modal1" class="modal">
         <div class="modal-content">
-          <h4>Choose your custom colors!</h4>
-          <div class="input-field col s6">
-            <select id="background-select">
-              <option value="#9e9e9e">Grey</option>
-              <option value="#e3f2fd">Blue</option>
-              <option value="#ff8a80">Red</option>
-              <option value="#a5d6a7">Green</option>
-              <option value="Black">Black</option>
-              <option value="White">White</option>
-            </select>
-            <label>Select Background</label>
-          </div>
-          <div class="input-field col s6">
-            <select id="text-select">
-              <option value="#9e9e9e">Grey</option>
-              <option value="#e3f2fd">Blue</option>
-              <option value="#ff8a80">Red</option>
-              <option value="#a5d6a7">Green</option>
-              <option value="Black">Black</option>
-              <option value="White">White</option>
-            </select>
-            <label>Select Text</label>
-          </div>
-
+            <h4>Choose your custom colors!</h4>
+            <div class="input-field col s6">
+                <select id="background-select">
+                    <option value="#9e9e9e">Grey</option>
+                    <option value="#e3f2fd">Blue</option>
+                    <option value="#ff8a80">Red</option>
+                    <option value="#a5d6a7">Green</option>
+                    <option value="Black">Black</option>
+                    <option value="White">White</option>
+                </select>
+                <label>Select Background</label>
+            </div>
+            <div class="input-field col s6">
+                <select id="text-select">
+                    <option value="#9e9e9e">Grey</option>
+                    <option value="#e3f2fd">Blue</option>
+                    <option value="#ff8a80">Red</option>
+                    <option value="#a5d6a7">Green</option>
+                    <option value="Black">Black</option>
+                    <option value="White">White</option>
+                </select>
+                <label>Select Text</label>
+            </div>
         </div>
         <div class="modal-footer">
-        <a href="#!" id="color-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Apply</a>
+            <a href="#!" id="color-btn" class="modal-action modal-close waves-effect waves-green btn-flat">Apply</a>
         </div>
-      </div>
-      <!-- firebase import -->
+    </div>
+    <!-- firebase import -->
     <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.js"></script>
@@ -146,8 +140,6 @@
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/get-dates.js"></script>
     <script type="text/javascript" src="js/modal-color.js"></script>
-
-
-
 </body>
+
 </html>

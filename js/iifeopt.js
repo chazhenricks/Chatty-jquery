@@ -2,18 +2,16 @@
 console.log("iifeopt");
 var Chatty = (function (oldChatty) {
     // GATHERING EVENT LISTENERS
-    var newMessage = document.getElementById('message-input');
-    var themeSelect = document.getElementById('theme-select');
-    var textSizeSelect = document.getElementById('text-size-select');
-    var clearLogButton = document.getElementById('clear-log');
-    var userSelect = document.getElementById('user-select');
+    var newMessage = $('#message-input');
+    var clearLogButton = $('#clear-log');
+    var userSelect = $('#user-select');
     // NAV CLEAR FUNCTION
     oldChatty.navClear = function () {
         // GETTING MESSAGEARRAY LENGTH
         var messageArray = Chatty.getMessages();
         // console.log(messageArray);
-        newMessage.value = null;
-        var selects = document.getElementsByTagName('option');
+        newMessage.val = null;
+        var selects = $('option');
         for (let i = 0; i < selects.length; i++) {
             selects[i].selected = false;
         }
@@ -23,27 +21,26 @@ var Chatty = (function (oldChatty) {
             Chatty.deleteAllMessages();
         }
         Chatty.writeToDom();
-        clearLogButton.setAttribute("disabled", true);
+        clearLogButton.attr("disabled", true);
     }
 
     // ENTER KYPRESS FUNCTION
     oldChatty.enterKeyPress = function () {
-        newMessage.addEventListener("keypress", function(event) {
-            var user = userSelect.value;
+        newMessage.keypress(function(event) {
+            var user = userSelect.val();
             if (event.keyCode === 13) {
-                Chatty.addMessages(newMessage.value, user);
+                Chatty.addMessages(newMessage.val(), user);
                 Chatty.writeToDom();
-                newMessage.value = null;
+                newMessage.val(null);
             }
-
-
         });
     }
 
     // SELECT THEME FUNCTION
     oldChatty.selectTheme = function () {
-        var themesSelect = document.getElementById("theme-select");
-        switch (themesSelect.value){
+        var themesSelect = $("#theme-select");
+
+        switch (themesSelect.val()){
             case "1":
                 document.body.classList.remove("darkTheme");
                 break;
@@ -57,104 +54,89 @@ var Chatty = (function (oldChatty) {
 
     // Select Text Size Function
     oldChatty.selectTextSize = function () {
-        var textSizeSelect = document.getElementById("text-size-select");
-        var write = document.getElementById("write");
-        switch (textSizeSelect.value){
+        var textSizeSelect = $("#text-size-select");
+        var write = $("#write");
+        switch (textSizeSelect.val()){
             case "a":
-                write.classList.remove("largeText");
+                write.removeClass("largeText");
                 break;
             case "b":
-                write.classList.add("largeText");
+                write.addClass("largeText");
                 break;
             default:
                 // console.log("Something is wrong");
         }
-        oldChatty.chatViewInnerEL();
+        oldChatty.chatView();
     }
 
     // DELETE MESSAGE BUTTON Event Listener
     oldChatty.deleteButton = function () {
-        var messageDeleteButtons = document.getElementsByClassName('delete');
-        for (var i = 0; i < messageDeleteButtons.length; i++) {
-
-            messageDeleteButtons.item(i).addEventListener("click", function(event) {
-                var deleteMessage = event.target.closest(".row").querySelector(".message").innerHTML;
+        $('.delete').click([event],function(){
+            console.log("cool man");
+            var deleteMessage = event.target.closest(".row").querySelector(".message").innerHTML;
                 var deleteDate = event.target.closest(".row").querySelector(".date").innerHTML;
                 var deleteUser = event.target.closest(".row").querySelector(".user").innerHTML;
                 console.log("deletes", deleteMessage, deleteDate, deleteUser);
                 Chatty.deleteMessages(deleteMessage, deleteDate, deleteUser);
-            });
-        }
+        });
     }
-
 
     // EDIT BUTTON EVENT LISTENER
     oldChatty.editButton = function() {
-        var editMessage = document.getElementsByClassName("edit");
-        for (var i = 0; i < editMessage.length; i++){
-            editMessage.item(i).addEventListener("click", function(){
-                var originalMessage = event.target.closest(".row").querySelector(".message").innerHTML;
-                var inputBox = document.getElementById("message-input");
-                var editButton = document.getElementById("edit-btn");
-                inputBox.focus();
-                inputBox.value = originalMessage;
-                editButton.classList.remove("hidden");
-                editButton.addEventListener("click", function(event){
-                    Chatty.editMessages(originalMessage, inputBox.value);
-                    editButton.classList.add("hidden");
-                    inputBox.value = null;
-                })
+        $(".edit").click([event], function(){
+            var originalMessage = event.target.closest(".row").querySelector(".message").innerHTML;
+            $("#message-input").focus().val(originalMessage);
+            $("#edit-btn").removeClass("hidden").click(function(){
+                Chatty.editMessages(originalMessage, $('#message-input').val());
+                $('#edit-btn').addClass("hidden");
+                $('#message-input').val(null);
             });
-        }
+        });
     }
 
     // Default Event Listeners
     oldChatty.defaultListeners = function () {
-        var themesBtn = document.getElementById('btn-selectTheme');
-        var textBtn = document.getElementById("btn-selectText");
-        var clearLogButton = document.getElementById('clear-log');
-        var colorBtn = document.getElementById("color-btn");
-
-
-        colorBtn.addEventListener("click", Chatty.setUserColor);
-        themesBtn.addEventListener("click", Chatty.selectTheme);
-        textBtn.addEventListener("click", Chatty.selectTextSize);
-        clearLogButton.addEventListener("click", Chatty.navClear);
+        $("#btn-selectTheme").click(Chatty.selectTheme);
+        $("#btn-selectText").click(Chatty.selectTextSize);
+        $("#clear-log").click(Chatty.navClear);
+        $("#color-btn").click(Chatty.setUserColor)
     }
 
     oldChatty.optionsView = function (){
-        var optionsClick = document.getElementById("optionsClick");
-        var footerInput = document.getElementById("footerInput");
-        var footer = document.getElementById("footer");
-        optionsClick.addEventListener("click", function(){
-            var optionsView = document.getElementById("optionsView");
-            var chatView = document.getElementById("chatLogView");
-            // console.log("options view clicked");
-            optionsView.classList.remove("hidden");
-            chatView.classList.add("hidden");
-            footerInput.classList.add("hidden");
-            footer.classList.add("footerHeight");
-        })
+        $("#optionsClick").click(function(){
+            $("#optionsView").removeClass("hidden");
+            $("#chatLogView").addClass("hidden");
+            $("#footerInput").addClass("hidden");
+            $("#footer").addClass("footerHeight");
+        });
     }
 
-    oldChatty.chatView = function (){
-        var chatLogClick = document.getElementById("chatLogClick");
-        var footerInput = document.getElementById("footerInput");
-        chatLogClick.addEventListener("click", oldChatty.chatViewInnerEL);
-    }
-
-    oldChatty.chatViewInnerEL = function (){
-        var optionsView = document.getElementById("optionsView");
-        var chatView = document.getElementById("chatLogView");
-        var footer = document.getElementById("footer");
-        // console.log("chat view clicked");
-        optionsView.classList.add("hidden");
-        chatView.classList.remove("hidden");
-        footerInput.classList.remove("hidden");
-        footer.classList.remove("footerHeight");
-    }
+oldChatty.chatView = function(){
+    $("#chatLogClick").click(function(){
+        $("#chatLogView").removeClass("hidden");
+        $("#optionsView").addClass("hidden");
+        $("#footerInput").addClass("hidden");
+        $("#footer").addClass("footerHeight");
+    });
+}
 
     return oldChatty
 })(Chatty || {});
+
+
+
+var something = $("#something")
+
+
+
+
+
+
+
+
+
+
+
+
 
 
